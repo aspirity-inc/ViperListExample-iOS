@@ -4,6 +4,9 @@ The app contains two modules:
 * List module loading and showing a collection of thumbnails
 * Details module showing a full-size image
 
+<img src="https://cloud.githubusercontent.com/assets/16237530/18193301/b287e1d6-710e-11e6-8ab3-b999866cb971.jpg" width="320"/>
+<img src="https://cloud.githubusercontent.com/assets/16237530/18193300/b285c5fe-710e-11e6-87ad-5d14013255d9.jpg" width="320"/>
+
 ## Frameworks
 This app uses the following frameworks:
 * [Swinject](https://github.com/Swinject/Swinject)
