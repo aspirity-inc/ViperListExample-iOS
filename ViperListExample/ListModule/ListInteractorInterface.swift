@@ -11,6 +11,6 @@ import RxSwift
 
 protocol ListInteractorInterface {
 
-    func getItemsForPage(page: Int) -> Observable<[ListItem]>
+    func getItemsForPage(page: Int) -> Observable<([ListItem], Int)>
 
 }

@@ -11,7 +11,7 @@ import Alamofire
 
 class RestProvider : DataProviderInterface {
     
-    var baseUrl: String?
+    let baseUrl: String
     
     init(baseUrl: String) {
         self.baseUrl = baseUrl
@@ -19,7 +19,7 @@ class RestProvider : DataProviderInterface {
     
     private func makeRequest(method: Alamofire.Method, url: String, parameters: [String : AnyObject]? = nil) -> Observable<(NSHTTPURLResponse, AnyObject?)> {
         return Observable<(NSHTTPURLResponse, AnyObject?)>.create { observer in
-            Alamofire.request(method, self.baseUrl! + url, parameters: parameters).responseJSON { response in
+            let request = Alamofire.request(method, self.baseUrl + url, parameters: parameters).responseJSON { response in
                 if let resp = response.response {
                     if case 200 ... 299 = resp.statusCode {
                         observer.onNext((response.response!, response.result.value))
@@ -31,7 +31,9 @@ class RestProvider : DataProviderInterface {
                 }
                 observer.onCompleted()
             }
-            return AnonymousDisposable {}
+            return AnonymousDisposable {
+                request.cancel()
+            }
         }
     }
     

@@ -19,11 +19,10 @@ class ListViewController: UIViewController, ListViewInterface, UICollectionViewD
     
     var presenter: ListPresenterInterface?
     var items: [ListItem] = Array()
-    var currentPage: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.getItemsForPage(currentPage)
+        presenter?.getMoreItems()
         
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), forControlEvents: .ValueChanged)
@@ -37,8 +36,7 @@ class ListViewController: UIViewController, ListViewInterface, UICollectionViewD
     }
     
     func refresh(refreshControl: UIRefreshControl) {
-        currentPage = 1
-        presenter?.getItemsForPage(currentPage)
+        presenter?.refresh()
     }
     
     func showItems(newItems: [ListItem], shouldRestart: Bool) {
@@ -73,8 +71,7 @@ class ListViewController: UIViewController, ListViewInterface, UICollectionViewD
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         if (indexPath.row == self.items.count - 1) {
-            currentPage += 1
-            presenter?.getItemsForPage(currentPage)
+            presenter?.getMoreItems()
         }
     }
     

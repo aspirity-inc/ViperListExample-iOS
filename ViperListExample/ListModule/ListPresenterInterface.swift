@@ -11,7 +11,8 @@ import RxSwift
 
 protocol ListPresenterInterface {
 
-    func getItemsForPage(page: Int)
+    func getMoreItems()
+    func refresh()
     func listItemClicked(item: ListItem)
 
 }

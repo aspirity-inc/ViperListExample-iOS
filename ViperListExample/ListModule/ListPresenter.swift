@@ -14,19 +14,35 @@ class ListPresenter : ListPresenterInterface {
     let interactor: ListInteractorInterface?
     var view: ListViewInterface?
     var wireframe: ListWireframeInterface?
+    var pages: Int?
+    var page: Int = 0
+    
+    let disposeBag = DisposeBag()
 
     init(interactor: ListInteractorInterface?) {
         self.interactor = interactor
     }
-
-    func getItemsForPage(page: Int) {
-        _ = interactor?.getItemsForPage(page)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { array in
-                self.view?.showItems(array, shouldRestart: (page == 1))
-            }, onError: { error in
-                self.view?.showError("Oops! Something unexpected happened.")
-            }, onCompleted: nil, onDisposed: nil)
+    
+    private func loadItems() {
+        if (page < pages || pages == nil) {
+            _ = interactor?.getItemsForPage(page)
+                .subscribe(onNext: { (array, pages) in
+                    self.pages = pages
+                    self.view?.showItems(array, shouldRestart: (self.page == 1))
+                    }, onError: { error in
+                        self.view?.showError("Oops! Something unexpected happened.")
+                    }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+        }
+    }
+    
+    func getMoreItems() {
+        page += 1
+        loadItems()
+    }
+    
+    func refresh() {
+        page = 1
+        loadItems()
     }
 
     func listItemClicked(item: ListItem) {

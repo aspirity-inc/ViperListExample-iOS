@@ -17,9 +17,12 @@ class ListInteractor : ListInteractorInterface {
         self.provider = provider!
     }
 
-    func getItemsForPage(page: Int) -> Observable<[ListItem]> {
-        return provider.getListOfItemsForPage(page).map({ (response, dict) throws -> [ListItem] in
-            return Mapper<ListItem>().mapArray(dict!)!
-        }).observeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "ru.aspirity.viper.background-queue"))
+    func getItemsForPage(page: Int) -> Observable<([ListItem], Int)> {
+        return provider.getListOfItemsForPage(page).map({ (response, dict) throws -> ([ListItem], Int) in
+            let list = Mapper<ListItem>().mapArray(dict?.objectForKey("list"))
+            let pager = Mapper<Pager>().map(dict?.objectForKey("pager"))
+            return (list!, pager!.pages!)
+        }).subscribeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "ru.aspirity.viper.background-queue"))
+            .observeOn(MainScheduler.instance)
     }
 }

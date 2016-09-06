@@ -37,6 +37,7 @@
 		D24928F01D791B3D0033A8DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24928EE1D791B3D0033A8DF /* LaunchScreen.storyboard */; };
 		D24928FB1D791B3D0033A8DF /* ViperListExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24928FA1D791B3D0033A8DF /* ViperListExampleTests.swift */; };
 		D24929061D791B3D0033A8DF /* ViperListExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24929051D791B3D0033A8DF /* ViperListExampleUITests.swift */; };
+		D25D46F71D7EB1730001BE2E /* Pager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D46F61D7EB1730001BE2E /* Pager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		D24929011D791B3D0033A8DF /* ViperListExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViperListExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24929051D791B3D0033A8DF /* ViperListExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViperListExampleUITests.swift; sourceTree = "<group>"; };
 		D24929071D791B3D0033A8DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D25D46F61D7EB1730001BE2E /* Pager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pager.swift; path = ListModule/Pager.swift; sourceTree = "<group>"; };
 		E2B2B9567468FB1886F1762B /* Pods_ViperListExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViperListExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E30F4C83FB65FDF343A0A7A0 /* Pods-ViperListExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperListExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ViperListExampleTests/Pods-ViperListExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E5F3AB0B25E27C04F3744301 /* Pods-ViperListExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperListExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ViperListExample/Pods-ViperListExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				D22CD6731D791D72001F41C0 /* ListItem.swift */,
+				D25D46F61D7EB1730001BE2E /* Pager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				D22CD68D1D791E16001F41C0 /* ListInteractorInterface.swift in Sources */,
 				D22CD69B1D791E99001F41C0 /* DetailsPresenterInterface.swift in Sources */,
 				D22CD69A1D791E99001F41C0 /* DetailsPresenter.swift in Sources */,
+				D25D46F71D7EB1730001BE2E /* Pager.swift in Sources */,
 				D22CD6991D791E99001F41C0 /* DetailsItem.swift in Sources */,
 				D22CD67B1D791D72001F41C0 /* ListItem.swift in Sources */,
 				D24928E61D791B3D0033A8DF /* AppDelegate.swift in Sources */,
