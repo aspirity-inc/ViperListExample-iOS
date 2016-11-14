@@ -17,12 +17,12 @@ class RestProvider : DataProviderInterface {
         self.baseUrl = baseUrl
     }
     
-    fileprivate func makeRequest(_ method: Alamofire.Method, url: String, parameters: [String : AnyObject]? = nil) -> Observable<(NSHTTPURLResponse, AnyObject?)> {
-        return Observable<(NSHTTPURLResponse, AnyObject?)>.create { observer in
-            let request = Alamofire.request(method, self.baseUrl + url, parameters: parameters).responseJSON { response in
+    fileprivate func makeRequest(_ method: Alamofire.HTTPMethod, url: String, parameters: [String : Any]? = nil) -> Observable<(HTTPURLResponse, AnyObject?)> {
+        return Observable<(HTTPURLResponse, AnyObject?)>.create { observer in
+            let request = Alamofire.request(self.baseUrl + url, method: method, parameters: parameters).responseJSON(completionHandler: {response in
                 if let resp = response.response {
-                    if case 200 ... 299 = resp.statusCode {
-                        observer.onNext((response.response!, response.result.value))
+                    if resp.statusCode > 199 && resp.statusCode < 300 {
+                        observer.onNext((resp, response.result.value as AnyObject?))
                     } else {
                         observer.onError(NSError(domain: "HTTP", code: resp.statusCode, userInfo: nil))
                     }
@@ -30,14 +30,14 @@ class RestProvider : DataProviderInterface {
                     observer.onError(NSError(domain: "HTTP", code: -1, userInfo: nil))
                 }
                 observer.onCompleted()
-            }
-            return AnonymousDisposable {
+            })
+            return Disposables.create {
                 request.cancel()
             }
         }
     }
     
-    func getListOfItemsForPage(_ page: Int) -> Observable<(NSHTTPURLResponse, AnyObject?)> {
-        return makeRequest(.GET, url: "images", parameters: ["page" : page])
+    func getListOfItemsForPage(_ page: Int) -> Observable<(HTTPURLResponse, AnyObject?)> {
+        return makeRequest(.get, url: "images", parameters: ["page" : page])
     }
 }

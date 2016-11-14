@@ -30,7 +30,7 @@ class ListItemCell : UICollectionViewCell {
         self.item = item
         cellImage.image = nil
         cellTitle.text = item.title
-        let image = cache?.imageWithIdentifier(item.thumbnailUrl!)
+        let image = cache?.image(withIdentifier: item.thumbnailUrl!)
         if image != nil {
             cellImage.image = image
             return
@@ -40,12 +40,12 @@ class ListItemCell : UICollectionViewCell {
     }
     
     func loadImage(_ url: String) {
-        Alamofire.request(.GET, url).responseImage { response in
+        Alamofire.request(url, method: .get).responseImage { response in
             if let image = response.result.value {
                 if (self.item?.thumbnailUrl == url) { //this is to prevent showing images in wrong cells
                     self.cellImage.image = image
                 }
-                self.cache?.addImage(image, withIdentifier: url)
+                self.cache?.add(image, withIdentifier: url)
             }
         }
     }

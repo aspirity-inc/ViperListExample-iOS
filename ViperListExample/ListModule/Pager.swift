@@ -14,11 +14,11 @@ struct Pager: Mappable {
     var page: Int?
     var pages: Int?
     
-    init(_ map: Map) {
+    init(map: Map) {
         
     }
     
-    mutating func mapping(_ map: Map) {
+    mutating func mapping(map: Map) {
         page    <- map["page"]
         pages   <- map["pages"]
     }    

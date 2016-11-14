@@ -31,12 +31,12 @@ class DetailsViewController : UIViewController, DetailsViewInterface {
             self.loadingIndicator.stopAnimating()
             return
         }
-        Alamofire.request(.GET, url!).responseImage { response in
+        Alamofire.request(url!, method: .get).responseImage { response in
             if let image = response.result.value {
                 self.imageView.image = image
-                self.cache?.addImage(image, withIdentifier: url!)
+                self.cache?.add(image, withIdentifier: url!)
                 self.loadingIndicator.stopAnimating()
-                self.imageView.hidden = false
+                self.imageView.isHidden = false
             }
         }
     }

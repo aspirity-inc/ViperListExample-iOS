@@ -28,7 +28,7 @@ class ContainerManager {
         }
         container.register(DataProviderInterface.self) { _ in
             RestProvider(baseUrl: "https://demo6609798.mockable.io/")
-        }.inObjectScope(.Container)
+        }.inObjectScope(.container)
         container.register(DetailsWireframeInterface.self) { c in
             DetailsWireframe(presenter: c.resolve(DetailsPresenterInterface.self))
         }
@@ -36,7 +36,7 @@ class ContainerManager {
             DetailsPresenter()
         }
         container.register(AutoPurgingImageCache.self) { _ in
-            AutoPurgingImageCache(memoryCapacity: 40 * 1024 * 1024, preferredMemoryUsageAfterPurge: 20 * 1024 * 1024)
-        }.inObjectScope(.Container)
+            AutoPurgingImageCache(memoryCapacity: UInt64(40 * 1024 * 1024), preferredMemoryUsageAfterPurge: UInt64(20 * 1024 * 1024))
+        }.inObjectScope(.container)
     }
 }
