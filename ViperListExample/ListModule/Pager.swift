@@ -18,7 +18,7 @@ struct Pager: Mappable {
         
     }
     
-    mutating func mapping(map: Map) {
+    mutating func mapping(_ map: Map) {
         page    <- map["page"]
         pages   <- map["pages"]
     }    

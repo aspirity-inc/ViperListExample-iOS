@@ -21,16 +21,16 @@ class ListWireframe : RootWireframe, ListWireframeInterface {
         self.listPresenter = presenter as? ListPresenter
     }
 
-    func showRootViewController(window: UIWindow?) {
+    func showRootViewController(_ window: UIWindow?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        listView = storyboard.instantiateViewControllerWithIdentifier(listViewController) as? ListViewController
+        listView = storyboard.instantiateViewController(withIdentifier: listViewController) as? ListViewController
         listView?.presenter = listPresenter
         listPresenter?.view = listView
         listPresenter?.wireframe = self
         window?.rootViewController = UINavigationController(rootViewController: listView!)
     }
 
-    func showItemDetails(item: ListItem) {
+    func showItemDetails(_ item: ListItem) {
         if (detailsWireframe == nil) {
             detailsWireframe = ContainerManager.manager.container.resolve(DetailsWireframeInterface.self)
         }

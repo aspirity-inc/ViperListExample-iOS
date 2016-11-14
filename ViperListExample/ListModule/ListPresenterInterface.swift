@@ -13,6 +13,6 @@ protocol ListPresenterInterface {
 
     func getMoreItems()
     func refresh()
-    func listItemClicked(item: ListItem)
+    func listItemClicked(_ item: ListItem)
 
 }

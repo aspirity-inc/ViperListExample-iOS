@@ -25,57 +25,57 @@ class ListViewController: UIViewController, ListViewInterface, UICollectionViewD
         presenter?.getMoreItems()
         
         refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         collectionView.addSubview(refreshControl!)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionViewLayout.itemSize = CGSizeMake(self.view.frame.width - 16, 192)
+        collectionViewLayout.itemSize = CGSize(width: self.view.frame.width - 16, height: 192)
         
         loadingIndicator.startAnimating()
         navigationItem.title = "Images"
     }
     
-    func refresh(refreshControl: UIRefreshControl) {
+    func refresh(_ refreshControl: UIRefreshControl) {
         presenter?.refresh()
     }
     
-    func showItems(newItems: [ListItem], shouldRestart: Bool) {
+    func showItems(_ newItems: [ListItem], shouldRestart: Bool) {
         if (shouldRestart) {
             items = Array()
             loadingIndicator.stopAnimating()
-            collectionView.hidden = false
+            collectionView.isHidden = false
             refreshControl?.endRefreshing()
         }
-        items.appendContentsOf(newItems)
+        items.append(contentsOf: newItems)
         collectionView.reloadData()
     }
     
-    func showError(text: String) {
+    func showError(_ text: String) {
         loadingLabel.text = text
         loadingIndicator.stopAnimating()
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ListItemCell", forIndexPath: indexPath) as! ListItemCell
-        cell.populateData(items[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListItemCell", for: indexPath) as! ListItemCell
+        cell.populateData(items[(indexPath as NSIndexPath).row])
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == self.items.count - 1) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if ((indexPath as NSIndexPath).row == self.items.count - 1) {
             presenter?.getMoreItems()
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        presenter?.listItemClicked(items[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.listItemClicked(items[(indexPath as NSIndexPath).row])
     }
 }

@@ -25,7 +25,7 @@ class DetailsViewController : UIViewController, DetailsViewInterface {
         presenter?.updateView()
     }
     
-    func showData(url: String?, title: String?) {
+    func showData(_ url: String?, title: String?) {
         self.navigationItem.title = title
         if url == nil {
             self.loadingIndicator.stopAnimating()
@@ -41,7 +41,7 @@ class DetailsViewController : UIViewController, DetailsViewInterface {
         }
     }
     
-    func showError(text: String?) {
+    func showError(_ text: String?) {
         loadingIndicator.stopAnimating()
         loadingLabel.text = text
     }

@@ -8,6 +8,17 @@
 
 import Foundation
 import RxSwift
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class ListPresenter : ListPresenterInterface {
 
@@ -23,7 +34,7 @@ class ListPresenter : ListPresenterInterface {
         self.interactor = interactor
     }
     
-    private func loadItems() {
+    fileprivate func loadItems() {
         if (page < pages || pages == nil) {
             _ = interactor?.getItemsForPage(page)
                 .subscribe(onNext: { (array, pages) in
@@ -45,7 +56,7 @@ class ListPresenter : ListPresenterInterface {
         loadItems()
     }
 
-    func listItemClicked(item: ListItem) {
+    func listItemClicked(_ item: ListItem) {
         wireframe?.showItemDetails(item)
     }
 }

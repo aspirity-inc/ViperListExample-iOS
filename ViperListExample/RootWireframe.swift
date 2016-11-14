@@ -10,6 +10,6 @@ import UIKit
 
 protocol RootWireframe {
     
-    func showRootViewController(inWindow: UIWindow?)
+    func showRootViewController(_ inWindow: UIWindow?)
     
 }

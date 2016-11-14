@@ -10,7 +10,7 @@ import Foundation
 
 protocol DetailsViewInterface {
     
-    func showData(url: String?, title: String?)
-    func showError(text: String?)
+    func showData(_ url: String?, title: String?)
+    func showError(_ text: String?)
     
 }

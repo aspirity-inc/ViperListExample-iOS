@@ -17,7 +17,7 @@ class ListInteractor : ListInteractorInterface {
         self.provider = provider!
     }
 
-    func getItemsForPage(page: Int) -> Observable<([ListItem], Int)> {
+    func getItemsForPage(_ page: Int) -> Observable<([ListItem], Int)> {
         return provider.getListOfItemsForPage(page).map({ (response, dict) throws -> ([ListItem], Int) in
             let list = Mapper<ListItem>().mapArray(dict?.objectForKey("list"))
             let pager = Mapper<Pager>().map(dict?.objectForKey("pager"))

@@ -17,7 +17,7 @@ class RestProvider : DataProviderInterface {
         self.baseUrl = baseUrl
     }
     
-    private func makeRequest(method: Alamofire.Method, url: String, parameters: [String : AnyObject]? = nil) -> Observable<(NSHTTPURLResponse, AnyObject?)> {
+    fileprivate func makeRequest(_ method: Alamofire.Method, url: String, parameters: [String : AnyObject]? = nil) -> Observable<(NSHTTPURLResponse, AnyObject?)> {
         return Observable<(NSHTTPURLResponse, AnyObject?)>.create { observer in
             let request = Alamofire.request(method, self.baseUrl + url, parameters: parameters).responseJSON { response in
                 if let resp = response.response {
@@ -37,7 +37,7 @@ class RestProvider : DataProviderInterface {
         }
     }
     
-    func getListOfItemsForPage(page: Int) -> Observable<(NSHTTPURLResponse, AnyObject?)> {
+    func getListOfItemsForPage(_ page: Int) -> Observable<(NSHTTPURLResponse, AnyObject?)> {
         return makeRequest(.GET, url: "images", parameters: ["page" : page])
     }
 }

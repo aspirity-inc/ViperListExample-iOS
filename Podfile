@@ -7,11 +7,11 @@ target 'ViperListExample' do
 
   # Pods for ViperListExample
 
-  pod 'RxSwift'
-  pod 'Alamofire'
-  pod 'AlamofireImage'
-  pod 'ObjectMapper'
-  pod 'Swinject'
+  pod 'RxSwift',    '~> 3.0'
+  pod 'Alamofire', '~> 4.0'
+  pod 'AlamofireImage', '~> 3.1'
+  pod 'ObjectMapper', '~> 2.2'
+  pod 'Swinject', '2.0.0-beta.2'
 
   target 'ViperListExampleTests' do
     inherit! :search_paths

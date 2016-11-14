@@ -22,11 +22,11 @@ class ListItemCell : UICollectionViewCell {
         super.awakeFromNib()
         self.contentView.layer.cornerRadius = 2.0
         self.contentView.layer.borderWidth = 0.6
-        self.contentView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
         self.contentView.layer.masksToBounds = true
     }
     
-    func populateData(item: ListItem) {
+    func populateData(_ item: ListItem) {
         self.item = item
         cellImage.image = nil
         cellTitle.text = item.title
@@ -39,7 +39,7 @@ class ListItemCell : UICollectionViewCell {
         }
     }
     
-    func loadImage(url: String) {
+    func loadImage(_ url: String) {
         Alamofire.request(.GET, url).responseImage { response in
             if let image = response.result.value {
                 if (self.item?.thumbnailUrl == url) { //this is to prevent showing images in wrong cells

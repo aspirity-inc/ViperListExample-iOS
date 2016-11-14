@@ -10,6 +10,6 @@ import Foundation
 
 protocol ListWireframeInterface {
 
-    func showItemDetails(item: ListItem)
+    func showItemDetails(_ item: ListItem)
 
 }

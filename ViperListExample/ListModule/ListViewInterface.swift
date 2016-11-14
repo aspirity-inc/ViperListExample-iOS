@@ -10,7 +10,7 @@ import Foundation
 
 protocol ListViewInterface {
     
-    func showItems(newItems: [ListItem], shouldRestart: Bool)
-    func showError(text: String)
+    func showItems(_ newItems: [ListItem], shouldRestart: Bool)
+    func showError(_ text: String)
     
 }

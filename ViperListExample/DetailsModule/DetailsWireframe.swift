@@ -19,9 +19,9 @@ class DetailsWireframe : DetailsWireframeInterface {
         detailsPresenter = presenter as? DetailsPresenter
     }
     
-    func showItemDetails(item: DetailsItem, fromViewController: ListViewController?) {
+    func showItemDetails(_ item: DetailsItem, fromViewController: ListViewController?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        detailsView = storyboard.instantiateViewControllerWithIdentifier(detailsViewController) as? DetailsViewController
+        detailsView = storyboard.instantiateViewController(withIdentifier: detailsViewController) as? DetailsViewController
         detailsView?.presenter = detailsPresenter
         detailsPresenter?.view = detailsView
         detailsPresenter?.details = item

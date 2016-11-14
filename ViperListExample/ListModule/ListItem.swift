@@ -19,7 +19,7 @@ struct ListItem : Mappable {
     init?(_ map: Map) {
     }
 
-    mutating func mapping(map: Map) {
+    mutating func mapping(_ map: Map) {
         id              <- map["id"]
         title           <- map["name"]
         thumbnailUrl    <- map["thumbnailUrl"]
@@ -30,12 +30,12 @@ struct ListItem : Mappable {
         typealias Object = Int
         typealias JSON = String
 
-        func transformFromJSON(value: AnyObject?) -> Object? {
+        func transformFromJSON(_ value: AnyObject?) -> Object? {
             return Int(value as! String)
         }
 
-        func transformToJSON(value: Object?) -> JSON? {
-            return String(value)
+        func transformToJSON(_ value: Object?) -> JSON? {
+            return String(describing: value)
         }
     }
 }

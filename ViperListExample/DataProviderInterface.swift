@@ -11,6 +11,6 @@ import RxSwift
 
 protocol DataProviderInterface {
     
-    func getListOfItemsForPage(page: Int) -> Observable<(NSHTTPURLResponse, AnyObject?)>
+    func getListOfItemsForPage(_ page: Int) -> Observable<(NSHTTPURLResponse, AnyObject?)>
     
 }

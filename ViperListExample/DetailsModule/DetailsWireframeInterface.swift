@@ -10,6 +10,6 @@ import Foundation
 
 protocol DetailsWireframeInterface {
 
-    func showItemDetails(item: DetailsItem, fromViewController: ListViewController?)
+    func showItemDetails(_ item: DetailsItem, fromViewController: ListViewController?)
 
 }
