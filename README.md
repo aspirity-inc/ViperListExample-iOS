@@ -15,7 +15,7 @@ This app uses the following frameworks:
 * [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
 
 ## How to build
-The app can be built for iOS 8.0 and higher using Xcode 7.x.
+The app can be built for iOS 9.0 and higher using Xcode 8.x.
 To build and run the app you have to install Pods using the following command in terminal:
 ```
 pod install

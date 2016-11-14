@@ -13,7 +13,7 @@ import RxSwift
 class ListPresenter : ListPresenterInterface {
 
     let interactor: ListInteractorInterface?
-    var view: ListViewInterface?
+    weak var view: ListViewInterface?
     var wireframe: ListWireframeInterface?
     var pages: Int?
     var page: Int = 0

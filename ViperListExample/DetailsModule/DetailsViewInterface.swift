@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DetailsViewInterface {
+protocol DetailsViewInterface : class {
     
     func showData(_ url: String?, title: String?)
     func showError(_ text: String?)

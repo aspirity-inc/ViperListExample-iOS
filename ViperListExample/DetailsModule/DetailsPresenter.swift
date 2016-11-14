@@ -10,7 +10,7 @@ import Foundation
 
 class DetailsPresenter : DetailsPresenterInterface {
     
-    var view: DetailsViewInterface?
+    weak var view: DetailsViewInterface?
     var wireframe: DetailsWireframeInterface?
     var details: DetailsItem?
     

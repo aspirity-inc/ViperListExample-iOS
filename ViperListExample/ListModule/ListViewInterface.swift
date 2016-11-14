@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ListViewInterface {
+protocol ListViewInterface : class {
     
     func showItems(_ newItems: [ListItem], shouldRestart: Bool)
     func showError(_ text: String)
