@@ -31,6 +31,7 @@
 		D22CD6A91D7920E1001F41C0 /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22CD6A71D7920E1001F41C0 /* RootWireframe.swift */; };
 		D22CD6AC1D79213E001F41C0 /* DataProviderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22CD6AA1D79213E001F41C0 /* DataProviderInterface.swift */; };
 		D22CD6AD1D79213E001F41C0 /* RestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22CD6AB1D79213E001F41C0 /* RestProvider.swift */; };
+		D241BA3E1DF90418008FBB4D /* ViewableListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D241BA3D1DF90418008FBB4D /* ViewableListItem.swift */; };
 		D24928E61D791B3D0033A8DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24928E51D791B3D0033A8DF /* AppDelegate.swift */; };
 		D24928EB1D791B3D0033A8DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24928E91D791B3D0033A8DF /* Main.storyboard */; };
 		D24928ED1D791B3D0033A8DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D24928EC1D791B3D0033A8DF /* Assets.xcassets */; };
@@ -84,6 +85,7 @@
 		D22CD6A71D7920E1001F41C0 /* RootWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootWireframe.swift; sourceTree = "<group>"; };
 		D22CD6AA1D79213E001F41C0 /* DataProviderInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProviderInterface.swift; sourceTree = "<group>"; };
 		D22CD6AB1D79213E001F41C0 /* RestProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProvider.swift; sourceTree = "<group>"; };
+		D241BA3D1DF90418008FBB4D /* ViewableListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewableListItem.swift; path = ListModule/ViewableListItem.swift; sourceTree = "<group>"; };
 		D24928E21D791B3D0033A8DF /* ViperListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViperListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24928E51D791B3D0033A8DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D24928EA1D791B3D0033A8DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				D22CD6831D791DBA001F41C0 /* ListViewController.swift */,
 				D22CD6741D791D72001F41C0 /* ListItemCell.swift */,
 				D22CD6771D791D72001F41C0 /* ListViewInterface.swift */,
+				D241BA3D1DF90418008FBB4D /* ViewableListItem.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				D22CD6A91D7920E1001F41C0 /* RootWireframe.swift in Sources */,
 				D22CD68C1D791E16001F41C0 /* ListInteractor.swift in Sources */,
 				D22CD67E1D791D72001F41C0 /* ListPresenterInterface.swift in Sources */,
+				D241BA3E1DF90418008FBB4D /* ViewableListItem.swift in Sources */,
 				D22CD69E1D791E99001F41C0 /* DetailsWireframe.swift in Sources */,
 				D22CD6AC1D79213E001F41C0 /* DataProviderInterface.swift in Sources */,
 				D22CD67F1D791D72001F41C0 /* ListViewInterface.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import RxSwift
 import Alamofire
+import ObjectMapper
 
 class RestProvider : DataProviderInterface {
     
@@ -37,7 +38,12 @@ class RestProvider : DataProviderInterface {
         }
     }
     
-    func getListOfItemsForPage(_ page: Int) -> Observable<(HTTPURLResponse, AnyObject?)> {
-        return makeRequest(.get, url: "images", parameters: ["page" : page])
+    func getListOfItemsForPage(_ page: Int) -> Observable<([ListItem], Int)> {
+        return makeRequest(.get, url: "images", parameters: ["page" : page]).map({ (response, dict) throws -> ([ListItem], Int) in
+            let dictionary = dict as! [String : Any]
+            let list = Mapper<ListItem>().mapArray(JSONArray: dictionary["list"] as! [[String : Any]])
+            let pager = Mapper<Pager>().map(JSON: dictionary["pager"] as! [String : Any])
+            return (list!, pager!.pages!)
+        })
     }
 }

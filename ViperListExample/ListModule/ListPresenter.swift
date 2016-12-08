@@ -11,7 +11,7 @@ import RxSwift
 
 
 class ListPresenter : ListPresenterInterface {
-
+    
     let interactor: ListInteractorInterface?
     weak var view: ListViewInterface?
     var wireframe: ListWireframeInterface?
@@ -19,7 +19,7 @@ class ListPresenter : ListPresenterInterface {
     var page: Int = 0
     
     let disposeBag = DisposeBag()
-
+    
     init(interactor: ListInteractorInterface?) {
         self.interactor = interactor
     }
@@ -27,12 +27,12 @@ class ListPresenter : ListPresenterInterface {
     fileprivate func loadItems() {
         if (pages == nil || page < pages! ) {
             _ = interactor?.getItemsForPage(page)
-                .subscribe(onNext: { (array, pages) in
+                .subscribe(onNext: { list, pages in
                     self.pages = pages
-                    self.view?.showItems(array, shouldRestart: (self.page == 1))
-                    }, onError: { error in
-                        self.view?.showError("Oops! Something unexpected happened.")
-                    }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+                    self.view?.showItems(list, shouldRestart: (self.page == 1))
+                }, onError: { error in
+                    self.view?.showError("OOPS!")
+                }, onCompleted: nil, onDisposed: nil)
         }
     }
     
@@ -45,8 +45,8 @@ class ListPresenter : ListPresenterInterface {
         page = 1
         loadItems()
     }
-
-    func listItemClicked(_ item: ListItem) {
+    
+    func listItemClicked(_ item: ViewableListItem) {
         wireframe?.showItemDetails(item)
     }
 }

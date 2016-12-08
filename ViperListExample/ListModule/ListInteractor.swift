@@ -10,20 +10,32 @@ import RxSwift
 import ObjectMapper
 
 class ListInteractor : ListInteractorInterface {
-
+    
     let provider: DataProviderInterface
-
+    
+    var data: [ListItem]? = nil
+    
     init(provider: DataProviderInterface?) {
         self.provider = provider!
     }
-
-    func getItemsForPage(_ page: Int) -> Observable<([ListItem], Int)> {
-        return provider.getListOfItemsForPage(page).map({ (response, dict) throws -> ([ListItem], Int) in
-            let dictionary = dict as! [String : Any]
-            let list = Mapper<ListItem>().mapArray(JSONArray: dictionary["list"] as! [[String : Any]])
-            let pager = Mapper<Pager>().map(JSON: dictionary["pager"] as! [String : Any])
-            return (list!, pager!.pages!)
-        }).subscribeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "ru.aspirity.viper.background-queue"))
-            .observeOn(MainScheduler.instance)
+    
+    func getItemsForPage(_ page: Int) -> Observable<([ViewableListItem], Int)> {
+        let observable = provider.getListOfItemsForPage(page).do(onNext: ({ list, pages in
+            self.data = list
+        }), onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
+        
+        let list = observable.flatMap { list, pages in
+            return Observable.from(list)
+            }.map { item in
+                return ViewableListItem(title: item.title, imageUrl: item.thumbnailUrl)
+            }.toArray()
+        
+        let pages = observable.map { list, pages in
+            return pages
+        }
+        
+        return Observable.zip(list, pages) { l, p in
+            return (l, p)
+        }
     }
 }
